@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>EPIC GOOGLE MAPS PROJECT</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <script src="js/store-data.js"></script>
+    <script src="js/index.js"></script>
+    <link  rel="stylesheet" href="style/style.css" />
+    <script src="https://kit.fontawesome.com/c939d0e917.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+</head>
+<body onload="initMap()">
+    <div class="title" >
+            STORE LOCATOR
+    </div>
+    <div class="search-container">
+        <div class="search">
+            <input id="zip-code-input" type="text" placeholder="Enter zip code" />
+            <i class="fas fa-search" ></i>
+            </div>
+    </div>
+    <div class="stores-list-container" >
+        <div class="store-list">
+            <!--  <div class="store-address">
+                  3330 Av. Rodgewwod,<br/>
+                  Montreal, QC, CA
+              </div>
+              <div class="store-phone-number">
+              438-995-0488
+              </div>
+              <hr style="z-index:10;width:350px;color: #999999;lin" />-->
+            <div class="card  mb-1">
+                <div class="card-body" >
+                    <blockquote class="blockquote mb-0">
+                        1455 Boulevard O,<br/>
+                        Montréal, QC, CA H2V 5V6
+                        <footer class="text-muted">514-295-0489</footer>
+                    </blockquote>
+                    <div class=" d-flex flex-column align-items-center justify-content-end store-number-container ">
+                        <div class="p-1 store-number">
+                            2
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card  mb-1">
+                <div class="card-body" >
+                    <blockquote class="blockquote mb-0">
+                        1455 Boulevard O,<br/>
+                        Montréal, QC, CA H3V 5V6
+                        <footer class="text-muted">514-295-0489</footer>
+                    </blockquote>
+                    <div class=" d-flex flex-column align-items-center justify-content-end store-number-container ">
+                        <div class="p-1 store-number">
+                            1
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card  mb-1">
+                <div class="card-body" >
+                    <blockquote class="blockquote mb-0">
+                        1455 Boulevard O,<br/>
+                        Montréal, QC, CA
+                        <footer class="text-muted">514-295-0489</footer>
+                    </blockquote>
+                    <div class=" d-flex flex-column align-items-center justify-content-end store-number-container ">
+                        <div class="p-1 store-number">
+                            4
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card mb-1">
+                <div class="card-body">
+                    <blockquote class="blockquote mb-0">
+                        3330 Av. Rodgewood,<br/>
+                        Montreal, QC, CA
+                        <footer class="text-muted">514-995-0488</footer>
+                    </blockquote>
+                    <div class=" d-flex flex-column align-items-center justify-content-end store-number-container ">
+                        <div class="p-1 store-number">
+                            3
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+        </div>
+    </div>
+    <div id="map"></div>
+    <script async defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCcwazb-T7zvceyA4VLWVB-eXvwj-XEUIA&callback=initMap">
+    </script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+</body>
+</html>

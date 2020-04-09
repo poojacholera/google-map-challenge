@@ -19,4 +19,4 @@ https://www.figma.com/file/hS9q9yTIxHhJLMKlYOqU7p/Google-Maps-(Copy)?node-id=0%3
 - May be give an info window when click on the individual store
 - maybe  add a beautiful transition on hover on the individual store
 
-
+![Image description](assets/images/googlemap-devChallenge.png)

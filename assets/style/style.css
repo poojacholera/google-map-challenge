@@ -16,18 +16,20 @@ body, html {
 .title {
     position: absolute;
     z-index: 10;
-    color: #333333;
+    color: #ffffff;
     left: 100px;
     top: 100px;
     text-transform: capitalize;
     font-size: 60px;
     font-weight: bold;
-    background-color: rgba(255, 255, 255, 0.2);
+   /* background-color: rgba(255, 255, 255, 0.2);*/
     padding: 10px;
     border-radius: 12px;
     border-width: 0;
 }
-
+.search i{
+    cursor: pointer;
+}
 .search-container {
     z-index: 10;
     position: absolute;
@@ -36,7 +38,7 @@ body, html {
     left: 100px;
     top: 200px;
     background: #454E53;
-    border: 1px solid #979797;
+    border: 0px solid #979797;
     border-radius: 44px;
     display: flex;
 }
@@ -71,7 +73,8 @@ border-width: 0;
     background-color: transparent;
     border: 0px;
     color: aliceblue;
-    caret-color: crimson;
+    caret-color: rgba(2, 117, 74, 1);
+
 }
 
 .search-container input:focus {
@@ -85,7 +88,7 @@ border-width: 0;
 }
 
 .search i:hover {
-    color: crimson;
+    color: rgba(2, 117, 74, 1);
 }
 
 .stores-list-container {
@@ -93,7 +96,8 @@ border-width: 0;
     width: 400px;
     /* height: 300px;*/
     position: absolute;
-    background-color: rgba(255, 255, 255, 1);
+ /*   background-color: rgba(255, 255, 255, 1);*/
+    background-color:transparent ;
     left: 100px;
     top: 260px;
     bottom: 30px;
@@ -120,30 +124,30 @@ border-width: 0;
     scroll-margin-top: 50px;
 
 }
-
-/*.store-address{
+.store-container-background{
     display: flex;
     flex-grow: 1;
-    font-size: 25px;
-    color: #333333;
-    padding-left:10px ;
+    margin-bottom: 12px;
+    margin-top: 12px;
+    padding-left: 8px;
+    padding-right:  8px;
+   /* background-color: #ccc;*/
+    border-radius: 18px;
+    transition:  all 0.2s ease-in-out;
 
 }
-.store-phone-number{
-    display: flex;
-    flex-grow: 1;
-    font-size: 20px;
-    color: #999999;
-    padding-left:10px ;
-    line-height: 54px;
-}*/
 .card {
     border-radius: 25px !important;
     border: 0px solid rgba(0, 0, 0, .125) !important;
     box-shadow: 0px 1px rgba(200, 200, 200, .8) !important;
     background-color: rgba(255, 255, 255, .9) !important;
 }
-
+.card:hover{
+    border: 2px solid rgba(2, 117, 74, .8) !important;
+    box-shadow: 4px 4px rgba(2, 117, 74, .8) !important;
+   /* background-color: rgba(200, 200, 200, .9) !important;*/
+    cursor: pointer;
+}
 .card p {
     margin-bottom: 0 !important;
 }
@@ -185,4 +189,45 @@ border-width: 0;
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
     background: crimson;
+}
+
+
+/* --- info Window ---- */
+.store-info-window{
+    min-width: 300px;
+    font-size: 18px;
+    padding:8px;
+
+}
+.store-info-name{
+    font-size: 24px;
+    font-weight: bold;
+    color: rgba( 0,0,0,0.87);
+}
+.store-info-status{
+    margin-top: 6px;
+    border-bottom: 1px solid rgba(0,0,0,.4);
+    padding-bottom: 6px;
+    font-size: 15px;
+
+}
+.store-info-address, .store-info-phone{
+    margin-top: 6px;
+    display:flex;
+    align-items: center;
+}
+.circle i{
+    color:white;
+    display:flex;
+}
+.store-info-address .circle, .store-info-phone .circle{
+    color:white;
+    background-color: dodgerblue;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right:8px ;
 }

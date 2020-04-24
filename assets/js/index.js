@@ -2,7 +2,9 @@ console.log("Hello logs");
 var map;
 var markers = [];
 let infoWindow;
+window.onload = ()  =>{
 
+};
 
 function initMap() {
     var montreal = {
@@ -95,29 +97,48 @@ function initMap() {
             }
         ]
     });
-    showStoreMarkers();
-    let mtlOlympicStadium = {
-        lat: 45.558941,
-        lng: -73.551468
-    };
-    //  console.log(stores);
-    displayStoresData();
+
     infoWindow = new google.maps.InfoWindow();
-    let StoreNumberElement =document.getElementById("store-number");
-    google.maps.event.addListener(StoreNumberElement, 'click', function() {
-        infoWindow.open(map, clickedMarker);
-        console.log("type of clickedMarker"+ clickedMarker );
-    });
+    searchStores();
+
+}
+
+searchStores = () => {
+    console.log("searching");
+    let foundStores = [];
+    var zipCode = document.getElementById('zip-code-input').value;
+    //console.log(zipCode);
+    if(zipCode){
+        stores.map((store) => {
+            let postal = store['address']["postalCode"].substring(0, 5);
+            let postal1 = store['address']["postalCode"].substring(0, 1);
+            let postal2 = store['address']["postalCode"].substring(0, 2);
+            let postal3 = store['address']["postalCode"].substring(0, 3);
+            let postal4 = store['address']["postalCode"].substring(0, 4);
+            if(postal == zipCode || zipCode == postal1 || postal2 == zipCode || postal3 == zipCode || postal4 == zipCode){
+                foundStores.push(store);
+            }
+        });
+    }else {
+    foundStores = stores;
+
+    }
+
+    displayStoresData(foundStores);
+    showStoreMarkers(foundStores);
+    setOnClickListener();
+    //console.log(foundStores);
 }
 
 /*display stores-data.js*/
-function displayStoresData() {
+function displayStoresData(stores) {
     let storesHTML = "";
     stores.map(function (store, index) {
         let address = store['addressLines'];
         let phoneNumber = store['phoneNumber'];
         storesHTML += `
-            <div class="card  mb-1 store-container" onclick="openInfoWindow( ${index+1})">
+            <div class="card  mb-1 store-container" >
+            <div class="store-container-background">
                 <div class="card-body" >
                     <blockquote class="blockquote mb-0 store-address">
                         <span>${address[0]}</span><br/>
@@ -130,12 +151,13 @@ function displayStoresData() {
                         </div>
                     </div>
                 </div>
+                </div>
             </div>
         `;
         document.querySelector('.store-list').innerHTML = storesHTML;
     })
 }
-showStoreMarkers = () => {
+showStoreMarkers = (stores) => {
     var bounds = new google.maps.LatLngBounds();
     stores.map(function (store,index){
      let name= store['name'];
@@ -143,23 +165,46 @@ showStoreMarkers = () => {
      var latlng = new google.maps.LatLng(
          store['coordinates']['latitude'],
          store['coordinates']['longitude']);
+     var openStatusText = store['openStatusText'];
+     var phoneNumber = store['phoneNumber'];
     bounds.extend(latlng);
-      createMarker(latlng,name, address, index)
+      createMarker(latlng,name, address,openStatusText, phoneNumber, index)
     });
     map.fitBounds(bounds);
+
 };
-function createMarker(latlng, name, address,index) {
+function createMarker(latlng, name, address, openStatus, phoneNumber,index) {
     let i = parseInt(index.toString());
     i= i+1
    // console.log("marker index "+ i + " typeof "+typeof(i));
-    var html = "<strong>" + name + "</strong> <br/>" + address;
+    var html =`
+        <div class="store-info-window">
+            <div class="store-info-name">${name}</div>
+            <div class="store-info-status">${openStatus}</div>
+            <div class="store-info-address">
+                <div class="circle">
+                    <i class="fas fa-location-arrow"></i>
+                </div>
+                ${address}
+            </div>
+            <div class="store-info-phone">
+                 <div class="circle">
+                    <i class="fas fa-phone-alt"></i>
+                  </div>
+                ${phoneNumber}
+            </div>
+        </div>  
+    `;
+
     var marker = new google.maps.Marker({
         map: map,
         position: latlng,
+        icon: 'assets/images/stbMarker.ico',
         title:name,
         animation: google.maps.Animation.DROP,
-        label:i.toString() ,
-      //  selectedItem={this.state.selectedItem}
+       // label:i.toString() ,
+
+
     });
     google.maps.event.addListener(marker, 'click', function() {
         infoWindow.setContent(html);
@@ -167,13 +212,25 @@ function createMarker(latlng, name, address,index) {
     });
     markers.push(marker);
 }
-const clickedMarker ={};
+
+
+setOnClickListener = () =>{
+    var storeElements = document.querySelectorAll(".store-container");
+    for(const[index, storeElement] of storeElements.entries()){
+        //console.log(storeElement);
+        storeElement.addEventListener('click',function() {
+            google.maps.event.trigger(markers[index], 'click');
+        })
+    }
+}
+
+/*let clickedMarker ={};
 openInfoWindow = (index) => {
 
 
     for (var i = 0; i < markers.length; ++i) {
         if(markers[index].label == i){
-            // clickedMarker=markers[i];
+             clickedMarker=markers[i];
             infoWindow.open(map, markers[i]);
             console.log("clickIndex: "+ index + "matched with array no "+i +" map:"+ map+" maker:"+markers[i].map );
 
@@ -182,14 +239,14 @@ openInfoWindow = (index) => {
 
 
     //alert(markers[index].label +" type of "+typeof(clickedMarker));
-    /*markers[i].setMap(null);
-    */
-   // clickedMarker.addListener('click', toggleBounce);
+    /!*markers[i].setMap(null);
+    *!/
+    clickedMarker.addListener('click', toggleBounce);
     //markers[index].toggleBounce();
     document.getElementById("store-number").click();
 
     //console.log("clickIndex: "+ clickIndex);
-};
+};*/
 
 function toggleBounce() {
     if (marker.getAnimation() !== null) {
